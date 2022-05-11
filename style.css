@@ -78,6 +78,13 @@ form .header {
   outline: 1px solid #2126f9;
 }
 
+.form-input select {
+  appearance: none;
+  background: white url('/icons8-sort-down-30.png');
+  background-repeat: no-repeat;
+  background-position-x: 98%;
+}
+
 .form-file-input {
   margin-top: 15px;
   padding: 5px 10px;
@@ -126,6 +133,11 @@ form .header {
   background-color: #d42424;
 }
 
+#list {
+  height: 100vh;
+  overflow-y: auto;
+}
+
 #list ul {
   list-style: none;
 }
@@ -135,12 +147,18 @@ form .header {
   padding: 0.5em 1rem;
   display: flex;
   position: relative;
+  cursor: pointer;
+}
+
+#list ul li:hover {
+  background-color: #e7e0e0;
 }
 
 #list ul li .close-icon {
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
 }
 
 #list ul li .img-section {
@@ -164,3 +182,18 @@ form .header {
   margin: 5px 0;
 }
 
+/* add media queries */
+
+@media screen and (max-width: 768px) {
+  .main .container {
+    flex-direction: column;
+  }
+
+  .main .container > * {
+    width: 100%;
+  }
+
+  .main .container > *:first-child {
+    margin-bottom: 1rem;
+  }
+}

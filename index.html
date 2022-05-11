@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>replit</title>
+    <title>Liste De Contact</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
 
@@ -19,25 +19,28 @@
             <h2>Formulaire de contact</h2>
           </div>
 
+          <!-- hidden input -->
+          <input type="hidden" name="id" id="id">
+
           <!-- inputs -->
           <div class="form-input">
             <label for="prenom">Prénom</label>
-            <input type="text" name="prenom" id="prenom" />
+            <input type="text" name="prenom" id="prenom" required/>
           </div>
           <div class="form-input">
             <label for="nom">Nom</label>
-            <input type="text" name="nom" id="nom" />
+            <input type="text" name="nom" id="nom" required/>
           </div>
           <div class="form-input">
-            <label for="groupe">Groupe</label>
-            <select name="groupe" id="groupe">
+            <label for="group">Groupe</label>
+            <select name="group" id="group" required>
               <option value="dev">Développement</option>
               <option value="marketing">Marketing</option>
             </select>
           </div>
           <div class="form-input">
             <label for="bio">Bio</label>
-            <textarea name="bio" id="bio" cols="30" rows="6"></textarea>
+            <textarea name="bio" id="bio" cols="30" rows="6" minlength="30" required></textarea>
           </div>
           <div class="form-file-input">
             <label for="file"> Choisir un fichier</label>
