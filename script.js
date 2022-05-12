@@ -2,7 +2,6 @@ let selectedId = null;
 
 const form = document.querySelector('form');
 
-
 const fileInput = document.querySelector('input[type=file]');
 
 
@@ -59,7 +58,7 @@ form.addEventListener('submit', (event) => {
     const item = document.createElement('li');
 
     // generate random id and store it to the variable id
-    const id = Math.random().toString(36).substring(2, 15);
+    const id = 'id' + Math.random().toString(36).substring(2, 15);
 
     item.id = id;
 
@@ -84,7 +83,7 @@ form.addEventListener('submit', (event) => {
     const itemCloseIcon = document.createElement('i');
     itemCloseIcon.classList.add('close-icon');
     const itemCloseIconImage = document.createElement('img');
-    itemCloseIconImage.src = './icons8-close-24.png';
+    itemCloseIconImage.src = './icons8-close.png';
     // add class close-img to itemCloseIconImage
     itemCloseIconImage.classList.add('close-img');
     itemCloseIcon.appendChild(itemCloseIconImage);

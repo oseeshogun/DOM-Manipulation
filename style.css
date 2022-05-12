@@ -80,7 +80,7 @@ form .header {
 
 .form-input select {
   appearance: none;
-  background: white url('/icons8-sort-down-30.png');
+  background: white url('./icons8-sort-down.png');
   background-repeat: no-repeat;
   background-position-x: 98%;
 }
