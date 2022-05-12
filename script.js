@@ -1,3 +1,5 @@
+let selectedId = null;
+
 const form = document.querySelector('form');
 
 
@@ -16,8 +18,15 @@ fileInput.addEventListener('change', (event) => {
     };
 });
 
+const formReset = () => {
+    // reset form
+    form.reset();
+    selectedId = null;
+    document.querySelector('form img').src = 'https://i.pravatar.cc/300';
+};
+
 form.addEventListener('reset', (event) => {
-    document.querySelector('button[type=submit]').textContent = 'Créer'; 
+    document.querySelector('button[type=submit]').textContent = 'Créer';
 });
 
 form.addEventListener('submit', (event) => {
@@ -28,23 +37,22 @@ form.addEventListener('submit', (event) => {
     const group = document.querySelector('#group').value;
     const bio = document.querySelector('#bio').value;
     const img = document.querySelector('form img').src;
-    const idHiddenInput = document.querySelector('#id').value;
 
-    if (idHiddenInput) {
-        document.querySelector(`li#${idHiddenInput} .name`).textContent = `${prenom} ${nom}`;
-        document.querySelector(`li#${idHiddenInput} .group`).textContent = group;
-        document.querySelector(`li#${idHiddenInput} .bio`).textContent = bio;
-        let itemImg = document.querySelector(`li#${idHiddenInput} .img-section img`);
+    if (selectedId) {
+        document.querySelector(`li#${selectedId} .name`).textContent = `${prenom} ${nom}`;
+        document.querySelector(`li#${selectedId} .group`).textContent = group;
+        document.querySelector(`li#${selectedId} .bio`).textContent = bio;
+        let itemImg = document.querySelector(`li#${selectedId} .img-section img`);
         if (fileInput.files.length != 0) {
             const file = fileInput.files[0];
             itemImg.src = URL.createObjectURL(file);
-            itemImg.onload = function () {
-                URL.revokeObjectURL(itemImg.src)
-            };
+            // itemImg.onload = function () {
+            //     URL.revokeObjectURL(itemImg.src)
+            // };
         } else {
             itemImg.src = img;
         }
-        form.reset();
+        formReset();
         return;
     }
 
@@ -56,16 +64,18 @@ form.addEventListener('submit', (event) => {
     item.id = id;
 
     item.onclick = (event) => {
-        if (event.target.classList.contains('close-icon') || 
-        event.target.classList.contains('close-img')
+        if (event.target.classList.contains('close-icon') ||
+            event.target.classList.contains('close-img')
         ) return;
-        form.reset();
-        document.querySelector('#id').value = id;
+        formReset();
+        selectedId = id;
         document.querySelector('#prenom').value = prenom;
         document.querySelector('#nom').value = nom;
         document.querySelector('#group').value = group;
         document.querySelector('#bio').value = bio;
-        document.querySelector('form img').src = img;
+        document.querySelector('form img').remove();
+        let img = document.querySelector(`li#${id} .img-section img`);
+        document.querySelector('.form-file-input').appendChild(img.cloneNode(true));
 
         document.querySelector('button[type=submit]').textContent = 'Modifier';
     };
@@ -92,12 +102,13 @@ form.addEventListener('submit', (event) => {
 
     // create img
     const itemImg = document.createElement('img');
+
     if (fileInput.files.length != 0) {
         const file = fileInput.files[0];
         itemImg.src = URL.createObjectURL(file);
-        itemImg.onload = function () {
-            URL.revokeObjectURL(itemImg.src)
-        };
+        // itemImg.onload = function () {
+        //     URL.revokeObjectURL(itemImg.src)
+        // };
     } else {
         itemImg.src = img;
     }
@@ -137,6 +148,5 @@ form.addEventListener('submit', (event) => {
     const ul = document.querySelector('#list ul');
     ul.appendChild(item);
 
-    // reset form
-    form.reset();
+    formReset();
 });
