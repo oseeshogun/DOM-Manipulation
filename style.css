@@ -108,6 +108,10 @@ form .header {
   object-fit: cover;
 }
 
+.form-file-input img[src="https://i.pravatar.cc/300"] {
+  display: none;
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;
